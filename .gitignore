@@ -10,3 +10,10 @@ test*
 tmain.c
 libmx.a
 4gvl1
+for_test.h
+test.txt
+.idea
+CMakeLists.txt
+test.c
+beta
+Oracle

@@ -1,10 +1,10 @@
 #include "libmx.h"
 
-static char to_space(char c) {
+/*static char to_space(char c) {
     if(mx_isspace(c))
         c = ' ';
     return c;
-}
+}*/
 static int size_char(char *temp) {
     int count = 0;
 
@@ -28,7 +28,7 @@ char *mx_del_extra_spaces(const char *str) {
         if(mx_isspace(temp[i])) {
             for (; mx_isspace(temp[i + 1]); i++);
         }
-        temp[i] = to_space(temp[i]);
+        //temp[i] = to_space(temp[i]);
         clear_name[j] = temp[i];
     }
     free(temp);

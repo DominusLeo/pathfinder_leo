@@ -13,7 +13,7 @@ char *mx_itoa(int number) {
         kost = 1;
     }
     if (number == INT_MIN)
-        return "-2147483648?";
+        return "-2147483648";
     for (int temp = number; temp; temp /= 10, size++);
     str = mx_strnew(size);
     (kost == 1) ? str[0] = '-' : 1;
