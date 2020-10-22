@@ -31,9 +31,9 @@ void mx_print_unicode(wchar_t c) {
         i = two_byte(num, c);
     if (c >=2048 && c < 65536)
         i = three_byte(num, c);
-    if (c >= 65536 && c < 1114111)
+    if (c >= 65536 && c < 1114112)
         i = four_byte(num, c);
-    if (c >= 1114111)
+    if (c >= 1114112)
         return;
     for(int j = 0 ; j <= i; j++)
         write(1, &num[j], 1);

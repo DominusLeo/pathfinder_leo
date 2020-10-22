@@ -8,7 +8,8 @@ void *mx_realloc(void *ptr, size_t size) {
         if((int)size != 0 && len > (int)size)
             return ptr;
         dst = malloc(size);
-        dst = mx_memcpy(dst, ptr, size);
+        if (size != 0 && ptr != NULL)
+            dst = mx_memcpy(dst, ptr, size);
         free(ptr);
     }
     return dst;

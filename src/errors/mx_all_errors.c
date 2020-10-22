@@ -79,19 +79,36 @@ bool invalid_n(char *argv[]) {
             }
         }
     }
+    mx_del_strarr(&lines);
+    lines = NULL;
+    return 0;
+}
+/*bool invalid_number_is(char *argv[]) {
+    unsigned long number;
+
+    number = atoi()
+    return 0;
+}*/
+bool invalid_sum(char *argv[]) {
+    char **c = mx_strsplit(mx_file_to_str(argv[1]), '\n');
+    int number = mx_atoi(c[0]);
     return 0;
 }
 
 void mx_all_errors(int argc, char *argv[]) {
-    if (invalid_argc(argc))
+    if (invalid_argc(argc))//1 leak
         return;
     if (not_exist(argv))
         return;
     if (empty(argv))
         return;
-    if (invalid_1(argv))
+    if (invalid_1(argv))//3 leaks
         return;
-    if (invalid_n(argv))
+    if (invalid_n(argv))//2 leaks
+        return;
+//    if (invalid_number_is(argv))
+//        return;
+    if(invalid_sum(argv))
         return;
     printf("next\n");
     //system("leaks -q pathfinder");
