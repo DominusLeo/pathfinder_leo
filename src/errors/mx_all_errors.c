@@ -54,45 +54,29 @@ bool invalid_n(char *argv[]) {
     char **lines = mx_strsplit(str, '\n');
 
     for (int i = 1; i < mx_count_words(str, '\n'); i++) {
-        flag->space = 0;
-        flag->tire = 1;
+        for (int j = 0; lines[i][j]; j++) {
         flag->word1 = 1;
         flag->word2 = 1;
-        flag->koma = 1;
         flag->num = 1;
-        for (int j = 0; lines[i][j]; j++) {
-            if (mx_isspace(lines[i][j]))
-                flag->space = 1;
-            mx_printint(1);
-            if(lines[i][j] == '-')
+        flag->tire = 1;
+            for (; mx_isalpha(lines[i][j]); j++)
+                flag->word1 = 0;
+            if (lines[i][j++] != '-')
                 flag->tire = 0;
-            mx_printint(2);
-            if (lines[i][j] == ',')
-                flag->koma = 0;
-            mx_printint(3);
-            for (; lines[i][j] != '-'; j++)
-                if (mx_isdigit(lines[i][j]) || mx_isalpha(lines[i][j])) {
-                    flag->word1 = 0;
-                    j++;
-                }
-//            mx_printint(4);
-//            for(; lines[i][j] != ','; j++)
-//                if (mx_isdigit(lines[i][j]) || mx_isalpha(lines[i][j])) {
-//                flag->word2 = 0;
-//                j++;
-//                }
-//            mx_printint(5);
-//            for (; lines[i][j] != '\n'; j++)
-//                if (mx_isdigit(lines[i][j]))
-//                    flag->num = 0;
-//            mx_printint(6);
-//            if (flag->num + flag->koma + flag->word2 + flag->word1 + flag->tire
-//            + flag->space > 0) {
-//                mx_printerr("error: line ");
-//                mx_printerr(mx_itoa(i + 1));
-//                mx_printerr(" is not valid\n");
-//                return 1;
-//            }
+            for (; mx_isalpha(lines[i][j]); j++)
+                flag->word2 = 0;
+            if (lines[i][j++] != ',')
+                flag->tire = 0;
+            for (; mx_isdigit(lines[i][j]); j++)
+                flag->num = 0;
+            if (lines[i][j] != '\0')
+                flag->tire = 0;
+            if (flag->tire == 0 || flag->word1 + flag->word2 + flag->num > 0) {
+                mx_printerr("error: line ");
+                mx_printerr(mx_itoa(i + 1));
+                mx_printerr(" is not valid\n");
+                return 1;
+            }
         }
     }
     return 0;
@@ -110,4 +94,5 @@ void mx_all_errors(int argc, char *argv[]) {
     if (invalid_n(argv))
         return;
     printf("next\n");
+    //system("leaks -q pathfinder");
 }
