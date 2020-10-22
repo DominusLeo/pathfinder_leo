@@ -1,44 +1,45 @@
 #include "libmx.h"
 
-static void swap(char **arr, int i, int j, int *count) {
-    char *tmp;
+static void mx_swap_str(char **s1, char **s2) {
+    char *tmp = *s1;
 
-    tmp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = tmp;
-    (*count)++;
+    *s1 = *s2;
+    *s2 = tmp;
 }
 
-static int partition(char **arr,int left, int right, int *count) {
-    int i = left;
-    int j = right + 1;
+static int count_move(char **arr, int *left, int *right, int *pos) {
+    int res = 0;
 
-    while (i < j) {
-        while (mx_strlen(arr[++i]) < mx_strlen(arr[left]) && i != right);
-        while (mx_strlen(arr[--j]) > mx_strlen(arr[left]) && j != left);
-        if (i < j && mx_strlen(arr[i]) != mx_strlen(arr[j]))
-            swap(arr, i, j, count);
+    if (*pos == *right)
+        --(*right);
+    if (*pos == *left)
+        ++(*left);
+    else {
+        ++res;
+        mx_swap_str(&arr[*pos], &arr[*left]);
     }
-    if (mx_strlen(arr[left]) > mx_strlen(arr[j]))
-        swap(arr, left, j, count);
-    return j;
-}
-
-static void sort(char **arr, int left, int right, int *count) {
-    static int j = 0;
-
-    if (left >= right)
-        return;
-    j = partition(arr, left, right, count);
-    sort(arr, left, j - 1, count);
-    sort(arr, j + 1, right, count);
+    if (*left < *right)
+        res += mx_quicksort(arr, *left, *right);
+    return res;
 }
 
 int mx_quicksort(char **arr, int left, int right) {
-    int count = 0;
+    int pos = left;
+    int len;
 
     if (!arr)
         return -1;
-    sort(arr, left, right, &count);
-    return count;
+    len = mx_strlen(arr[left]);
+    for (int beg = left, end = right; beg < end; --end) {
+        if (len > mx_strlen(arr[end])) {
+            pos = end;
+            for (++beg; beg < end; ++beg) {
+                if (len < mx_strlen(arr[beg])) {
+                    pos = beg;
+                    break;
+                }
+            }
+        }
+    }
+    return count_move(arr, &left, &right, &pos);
 }
