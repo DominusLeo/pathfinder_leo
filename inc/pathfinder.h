@@ -31,3 +31,5 @@ bool invalid_argc(int argc);
 bool not_exist(char *argv[]);
 bool empty(struct file0 *data);
 bool invalid_1(char *str);
+
+bool invalid_number_islands(struct file0 *data);

@@ -44,25 +44,6 @@ bool invalid_n(struct file0 *data) {
     return 0;
 }
 
-bool invalid_number_islands(struct file0 *data) {
-    int number = mx_atoi(data->file_lines[0]);
-    int z = 0;
-    int count = 0;
-
-    printf("num0 |%d|\n", number);
-    for (z = 0; data->all_bridges[z]; z++)
-        printf("bridge %d = |%s|\n", z, data->all_bridges[z]);
-    for (z = 0; data->all_bridges[z]; z++) {
-        for (int i = z; data->all_bridges[i]; i++) {
-            if (mx_strcmp(data->all_bridges[z], data->all_bridges[i]) == 0)
-                count++;
-        }
-    }
-    printf("count = |%d|\n", count/2);
-//    for (z = 0; data->all_bridges[z]; z++)
-//        printf("bridge %d = |%s|\n", z, data->all_bridges[z]);
-    return 0;
-}
 /*bool duplicates(char *argv[]) {
 
 
@@ -75,7 +56,7 @@ bool invalid_number_islands(struct file0 *data) {
 }*/
 
 void mx_all_errors(struct file0 *data) {
-    printf("file:\n%s\n", data->file);
+//    printf("file:\n%s\n", data->file);
     if (invalid_1(data->file_lines[0]))
         return;
     if (invalid_n(data))
