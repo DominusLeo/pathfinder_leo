@@ -23,6 +23,6 @@ void mx_all_errors(t_file *data);
 bool invalid_argc(int argc);
 bool not_exist(char *argv[]);
 bool empty(t_file *data);
-bool invalid_1(char *str);//INT_MAX?
+bool invalid_1(char *str);
 bool invalid_n(t_file *data);//Dup Bridges
 bool invalid_number_islands(t_file *data);

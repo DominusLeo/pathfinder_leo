@@ -5,10 +5,14 @@
     return 0;
 }*/
 
-bool invalid_sum(int *arr) {
+bool invalid_sum(int *arr, int count) {
     unsigned long sum = 0;
-    for (;0;) {
-
+    for (int i = 0; i < count;i++)
+        sum += arr[i];
+    printf("sum = %lu\n", sum);
+    if (sum > INT_MAX) {
+        mx_printerr("error: sum of bridges lengths is too big\n");
+        return 1;
     }
     return 0;
 }
@@ -23,7 +27,7 @@ void mx_all_errors(t_file *data) {
         return;
 //    if (duplicates())
 //        return;
-    if(invalid_sum(data->isl_lengts))
+    if(invalid_sum(data->isl_lengts, data->bridge_count))
         return;
         mx_print_unicode_str("\n4053 4053 4053 4053 4053 4053 4053 4053 4053\n"
                              "78008 hello world 78008\n"
