@@ -1,46 +1,39 @@
 #include "pathfinder.h"
 
-/*int smth(struct file0 *data, struct file0 *flag) {
+static int smth(struct file0 *data, int i) {
+    int j = 0;
+    int num = 1;
+    int tire = 0;
+    int word1 = 1;
+    int word2 = 1;
 
-    return 1;
-}*/
+    for (; mx_isalpha(data->file_lines[i][j]); j++)
+        word1 = 0;
+    (data->file_lines[i][j++] != '-') ? tire = 1 : 1;
+    for (; mx_isalpha(data->file_lines[i][j]); j++)
+        word2 = 0;
+    (data->file_lines[i][j++] != ',') ? tire = 1: 1;
+    for (; mx_isdigit(data->file_lines[i][j]); j++)
+        num = 0;
+    (data->file_lines[i][j] != '\0') ? tire = 1 : 1;
+    if (tire + word1 + num + word2 > 0)
+        return 1;
+    return 0;
+}
+
 bool invalid_n(struct file0 *data) {
-    format_flags *flag = (format_flags *) malloc(sizeof(struct format_flags));
-    int j;
     char *line = 0;
     //long a = 0;
 
-    for (int i = 1; i < mx_count_words(data->file, '\n'); i++) {
-        j = 0;
-        flag->word1 = 1;
-        flag->word2 = 1;
-        flag->num = 1;
-        flag->tire = 1;
-        for (; mx_isalpha(data->file_lines[i][j]); j++)
-            flag->word1 = 0;
-        if (data->file_lines[i][j++] != '-')
-            flag->tire = 0;
-        for (; mx_isalpha(data->file_lines[i][j]); j++)
-            flag->word2 = 0;
-        if (data->file_lines[i][j++] != ',')
-            flag->tire = 0;
-        for (; mx_isdigit(data->file_lines[i][j]); j++) {
-            flag->num = 0;
+    for (int i = 1; i < mx_count_words(data->file, '\n'); i++)
+        if (smth(data, i)) {
+        line = mx_itoa(i + 1);
+        mx_printerr("error: line ");
+        mx_printerr(line);
+        mx_printerr(" is not valid\n");
+        free(line);
+        return 1;
         }
-        if (data->file_lines[i][j] != '\0')
-            flag->tire = 0;
-        if (flag->tire == 0 || flag->word1 + flag->word2 + flag->num > 0) {
-            line = mx_itoa(i + 1);
-            mx_printerr("error: line ");
-            mx_printerr(line);
-            mx_printerr(" is not valid\n");
-            free(line);
-            free(flag);
-            return 1;
-        }
-    }
-    free(line);
-    free(flag);
     return 0;
 }
 

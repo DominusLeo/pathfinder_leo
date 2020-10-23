@@ -2,16 +2,6 @@
 
 #include "libmx.h"
 
-typedef struct format_flags {
-    int word1;
-    int word2;
-    int tire;
-    int koma;
-    int num;
-    int space;
-    int line;
-} format_flags;
-
 typedef struct file0 {
     int fd;
     int *lengts;
