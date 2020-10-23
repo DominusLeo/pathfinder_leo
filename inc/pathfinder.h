@@ -12,4 +12,11 @@ typedef struct format_flags {
     int line;
 } format_flags;
 
-void mx_all_errors(int argc, char *argv[]);
+typedef struct file0 {
+    int fd;
+    char *name;
+    char *file;
+    char **file_lines;
+} file0;
+
+void mx_all_errors(int argc, file0 *data);
