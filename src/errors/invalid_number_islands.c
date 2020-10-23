@@ -1,6 +1,6 @@
 #include "pathfinder.h"
 
-bool invalid_number_islands(struct file0 *data) {
+bool invalid_number_islands(t_file *data) {
     int number = mx_atoi(data->file_lines[0]);
     int count = 1;
     char **temp = data->all_bridges;

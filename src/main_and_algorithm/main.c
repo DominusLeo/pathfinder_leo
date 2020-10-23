@@ -1,7 +1,7 @@
 #include "pathfinder.h"
 
 int main (int argc, char *argv[]) {
-    file0 *data = NULL;
+    t_file *data = NULL;
 
     if (invalid_argc(argc))
         return 0;

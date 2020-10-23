@@ -1,6 +1,6 @@
 #include "pathfinder.h"
 
-static int smth(struct file0 *data, int i) {
+static int smth(t_file *data, int i) {
     int j = 0;
     int num = 1;
     int tire = 0;
@@ -21,7 +21,7 @@ static int smth(struct file0 *data, int i) {
     return 0;
 }
 
-bool invalid_n(struct file0 *data) {
+bool invalid_n(t_file *data) {
     char *line = 0;
     //long a = 0;
 

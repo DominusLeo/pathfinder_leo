@@ -2,7 +2,7 @@
 
 #include "libmx.h"
 
-typedef struct file0 {
+typedef struct s_file {
     int fd;//?
     int *isl_lengts;
     char *lengt;
@@ -12,16 +12,16 @@ typedef struct file0 {
     char **lengts;
     char **file_lines;
     char **all_bridges;
-} file0;
+} t_file;
 
 /*typedef struct bridges {
 }bridges;*/
 
-file0 *init_start(char *argv[]);
-void mx_all_errors(struct file0 *data);
+t_file *init_start(char *argv[]);
+void mx_all_errors(t_file *data);
 bool invalid_argc(int argc);
 bool not_exist(char *argv[]);
-bool empty(struct file0 *data);
-bool invalid_1(char *str);//INT_MAX
-bool invalid_n(struct file0 *data);//INT_MAX + Dup Bridges
-bool invalid_number_islands(struct file0 *data);
+bool empty(t_file *data);
+bool invalid_1(char *str);//INT_MAX?
+bool invalid_n(t_file *data);//Dup Bridges
+bool invalid_number_islands(t_file *data);

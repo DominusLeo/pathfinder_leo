@@ -10,7 +10,7 @@ bool invalid_sum(char *argv[]) {
     return 0;
 }
 
-void mx_all_errors(struct file0 *data) {
+void mx_all_errors(t_file *data) {
 //    printf("file:\n%s\n", data->file);
     if (invalid_1(data->file_lines[0]))
         return;

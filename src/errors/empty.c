@@ -1,6 +1,6 @@
 #include "pathfinder.h"
 
-bool empty(struct file0 *data) {
+bool empty(t_file *data) {
     if (mx_strlen(data->file) == 0) {
         mx_printerr("error: file ");
         mx_printerr(data->name);
