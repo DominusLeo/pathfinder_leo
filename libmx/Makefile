@@ -9,7 +9,7 @@ OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC_FILES:%.c=%.o)))
 INC_FILES = $(wildcard $(INC_DIR)/*.h)
 
 CC = clang
-C_FLAGS = -std=c11 $(addprefix -W, all extra error pedantic) -g -fsanitize=address
+C_FLAGS = -std=c11 $(addprefix -W, all extra error pedantic) -g
 
 AR = ar
 AR_FLAGS = rcs

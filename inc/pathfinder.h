@@ -14,9 +14,15 @@ typedef struct format_flags {
 
 typedef struct file0 {
     int fd;
+    int *lengts;
     char *name;
     char *file;
+    char *bridges;
     char **file_lines;
+    char **all_bridges;
 } file0;
 
-void mx_all_errors(int argc, file0 *data);
+/*typedef struct bridges {
+}bridges;*/
+
+void mx_all_errors(file0 *data);

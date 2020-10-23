@@ -23,7 +23,7 @@ LIB_INC	 = $(addsuffix $(INC_DIR), $(LIB_DIRS))
 CC		 = clang
 GFLAGS		= -std=c11 -Wall -Wextra -Werror -Wpedantic\
 			  -Wno-unused-command-line-argument -Wno-unused-variable \
-			  -Wno-unused-function -Wno-unused-parameter -g #-fsanitize=address
+			  -Wno-unused-function -Wno-unused-parameter -g
 IFLAGS	 = $(addprefix -I, $(LIB_INC) $(INC_DIR))
 COMPILE	 = $(CC) $(GFLAGS) $(IFLAGS) $(LIB_BIN)
 
