@@ -25,4 +25,9 @@ typedef struct file0 {
 /*typedef struct bridges {
 }bridges;*/
 
-void mx_all_errors(file0 *data);
+file0 *init_start(char *argv[]);
+void mx_all_errors(struct file0 *data);
+bool invalid_argc(int argc);
+bool not_exist(char *argv[]);
+bool empty(struct file0 *data);
+bool invalid_1(char *str);

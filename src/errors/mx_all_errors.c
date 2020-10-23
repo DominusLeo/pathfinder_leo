@@ -1,43 +1,5 @@
 #include "pathfinder.h"
 
-bool not_exist(struct file0 *data) {
-    if (data->fd < 0) {
-        mx_printerr("error: file ");
-        mx_printerr(data->name);
-        mx_printerr(" does not exist\n");
-        close(data->fd);
-        //system("leaks -q pathfinder");
-        return 1;
-    }
-    else
-        //system("leaks -q pathfinder");
-        return 0;
-}
-bool empty(struct file0 *data) {
-        if (mx_strlen(data->file) == 0) {
-        mx_printerr("error: file ");
-        mx_printerr(data->name);
-        mx_printerr(" is empty\n");
-        //system("leaks -q pathfinder");
-        return 1;
-    }
-    else
-        //system("leaks -q pathfinder");
-        return 0;
-}
-bool invalid_1(char *str) {
-    if (str[0] == '\n') {
-        mx_printerr("error: line 1 is not valid\n");
-        return 1;
-    }
-    for (int i = 0; str[i] != '\n' && str[i] != '\0'; i++)
-        if (!mx_isdigit(str[i]) || mx_atoi(&str[i]) < 0) {
-            mx_printerr("error: line 1 is not valid\n");
-            return 1;
-        }
-    return 0;
-}
-
 /*int smth(struct file0 *data, struct file0 *flag) {
 
     return 1;
@@ -108,15 +70,12 @@ bool invalid_number_islands(struct file0 *data) {
 }*/
 
 /*bool invalid_sum(char *argv[]) {
+
     return 0;
 }*/
 
 void mx_all_errors(struct file0 *data) {
-    //printf("file:\n%s\n", data->file);
-    if (not_exist(data))
-        return;
-    if (empty(data))
-        return;
+    printf("file:\n%s\n", data->file);
     if (invalid_1(data->file_lines[0]))
         return;
     if (invalid_n(data))
@@ -130,5 +89,4 @@ void mx_all_errors(struct file0 *data) {
         mx_print_unicode_str("\n4053 4053 4053 4053 4053 4053 4053 4053 4053\n"
                              "78008 hello world 78008\n"
                              "4053 4053 4053 4053 4053 4053 4053 4053 4053\n\n");
-    //system("leaks -q pathfinder");
 }
