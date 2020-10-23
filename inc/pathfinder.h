@@ -4,6 +4,7 @@
 
 typedef struct s_file {
     int fd;//?
+    int bridge_count;
     int *isl_lengts;
     char *lengt;
     char *name;
