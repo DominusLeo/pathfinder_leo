@@ -1,14 +1,14 @@
 #include "pathfinder.h"
+
 /*bool duplicates(char *argv[]) {
 
-
     return 0;
 }*/
 
-/*bool invalid_sum(char *argv[]) {
+bool invalid_sum(char *argv[]) {
 
     return 0;
-}*/
+}
 
 void mx_all_errors(struct file0 *data) {
 //    printf("file:\n%s\n", data->file);

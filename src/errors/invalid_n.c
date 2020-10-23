@@ -26,7 +26,7 @@ bool invalid_n(struct file0 *data) {
     //long a = 0;
 
     for (int i = 1; i < mx_count_words(data->file, '\n'); i++)
-        if (smth(data, i)) {
+        if (smth(data, i) || data->isl_lengts[i - 1] < 0) {
             line = mx_itoa(i + 1);
             mx_printerr("error: line ");
             mx_printerr(line);
