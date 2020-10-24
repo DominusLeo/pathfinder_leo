@@ -3,15 +3,17 @@
 #include "libmx.h"
 
 typedef struct s_file {
-    int fd;//?
+    int fd;//need it?
     int bridge_count;
     int *isl_lengts;
     char *lengt;
     char *name;
     char *file;
     char *bridges;
+    char *bridges_double;//need it?
     char **lengts;
     char **file_lines;
+    char **bridges_pair;//need it?
     char **all_bridges;
 } t_file;
 

@@ -3,6 +3,7 @@
 static void init_bridges(t_file *data) {
     data->file_lines = mx_strsplit(data->file, '\n');
     data->bridges = mx_strnew(mx_strlen(data->file));
+    data->bridges_double = mx_strnew(mx_strlen(data->file));
 
     for (int i = 0; data->file[i]; i++) {
         if (!mx_isalpha(data->file[i]))
@@ -10,10 +11,21 @@ static void init_bridges(t_file *data) {
         else
             data->bridges[i] = data->file[i];
     }
-    printf("bridges = |%s|\n", data->bridges);
+//    printf("bridges = |%s|\n", data->bridges);
     data->all_bridges = mx_strsplit(data->bridges, '-');
-    for (int i = 0; i < data->bridge_count * 2; i++)
-        printf("word %d = |%s|\n", i, data->all_bridges[i]);
+//    for (int i = 0; i < data->bridge_count * 2; i++)
+//        printf("word %d = |%s|\n", i, data->all_bridges[i]);
+
+    for (int i = 0; data->file[i]; i++) {
+        if (!mx_isalpha(data->file[i]) && data->file[i] != '-')
+            data->bridges_double[i] = '~';
+        else
+            data->bridges_double[i] = data->file[i];
+    }
+    printf("bridges_double = |%s|\n", data->bridges_double);
+    data->bridges_pair = mx_strsplit(data->bridges_double, '~');
+    for (int i = 0; i < data->bridge_count; i++)
+        printf("word_pair %d = |%s|\n", i, data->bridges_pair[i]);
 }
 
 static void init_arr_lengts(t_file *data) {
@@ -29,10 +41,10 @@ static void init_arr_lengts(t_file *data) {
         data->lengt++;
     data->lengts = mx_strsplit(data->lengt, ' ');//why here exect \|/?
     data->isl_lengts = (int *)malloc(data->bridge_count);
-    printf("nums = |%s|\n", data->lengt);
-    for (int i = 0; i < data->bridge_count; i++) {
+//    printf("nums = |%s|\n", data->lengt);
+    for (int i = 0; data->lengts[i]; i++) {
         data->isl_lengts[i] = mx_atoi(data->lengts[i]);
-        printf("lengt %d = %d\n", i, data->isl_lengts[i]);
+//        printf("lengt %d = %d\n", i, data->isl_lengts[i]);
     }
 }
 
