@@ -8,7 +8,8 @@ int main (int argc, char *argv[]) {
     if (not_exist(argv))
         return 0;
     data = init_start(argv);
-    mx_all_errors(data);
-    system("leaks -q pathfinder");
+    if (mx_all_errors(data))
+        return 0;
+//    system("leaks -q pathfinder");
     return 0;
 }

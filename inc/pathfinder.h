@@ -10,21 +10,21 @@ typedef struct s_file {
     char *name;
     char *file;
     char *bridges;
-    char *bridges_double;//need it?
     char **lengts;
     char **file_lines;
-    char **bridges_pair;//need it?
     char **all_bridges;
-} t_file;
+    char **all_bridges_sort;
+}              t_file;
 
 /*typedef struct bridges {
 }bridges;*/
 
 t_file *init_start(char *argv[]);
-void mx_all_errors(t_file *data);
+bool mx_all_errors(t_file *data);
 bool invalid_argc(int argc);
 bool not_exist(char *argv[]);
 bool empty(t_file *data);
 bool invalid_1(char *str);
-bool invalid_n(t_file *data);//Dup Bridges
+bool invalid_n(t_file *data);//INT_MAX gluks
 bool invalid_number_islands(t_file *data);
+bool invalid_sum(int *arr, int count);
