@@ -1,6 +1,6 @@
 #include "pathfinder.h"
 
-static void init_bridges(t_file *data) {
+static int init_bridges(t_file *data) {
     data->file_lines = mx_strsplit(data->file, '\n');
     data->bridges = mx_strnew(mx_strlen(data->file));
     data->bridges_double = mx_strnew(mx_strlen(data->file));
@@ -13,10 +13,12 @@ static void init_bridges(t_file *data) {
     }
 //    printf("bridges = |%s|\n", data->bridges);
     data->all_bridges = mx_strsplit(data->bridges, '-');
-//    for (int i = 0; i < data->bridge_count * 2; i++)
-//        printf("word %d = |%s|\n", i, data->all_bridges[i]);
-
-    for (int i = 0; data->file[i]; i++) {
+    for (int i = 0; i < data->bridge_count * 2; i+=2) {
+        printf("word %d = |%s| - |%s|\n", i, data->all_bridges[i],
+               data->all_bridges[i + 1]);
+    }
+//need it?
+    /*for (int i = 0; data->file[i]; i++) {
         if (!mx_isalpha(data->file[i]) && data->file[i] != '-')
             data->bridges_double[i] = '~';
         else
@@ -25,7 +27,8 @@ static void init_bridges(t_file *data) {
     printf("bridges_double = |%s|\n", data->bridges_double);
     data->bridges_pair = mx_strsplit(data->bridges_double, '~');
     for (int i = 0; i < data->bridge_count; i++)
-        printf("word_pair %d = |%s|\n", i, data->bridges_pair[i]);
+        printf("word_pair %d = |%s|\n", i, data->bridges_pair[i]);*/
+    return 0;
 }
 
 static void init_arr_lengts(t_file *data) {
@@ -57,7 +60,8 @@ t_file *init_start(char *argv[]) {
         exit(0);
     data->bridge_count = mx_count_words(data->file, '\n') - 1;
     data->fd = open(argv[1], O_RDONLY);
-    init_bridges(data);
+    if (init_bridges(data))
+        exit(0);
     init_arr_lengts(data);
 
     return data;
