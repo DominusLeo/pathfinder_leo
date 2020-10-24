@@ -8,10 +8,8 @@ bool not_exist(char *argv[]) {
         mx_printerr(argv[1]);
         mx_printerr(" does not exist\n");
         close(fd);
-        //system("leaks -q pathfinder");
         return 1;
     }
     else
-        //system("leaks -q pathfinder");
         return 0;
 }

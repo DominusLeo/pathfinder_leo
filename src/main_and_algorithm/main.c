@@ -10,6 +10,6 @@ int main (int argc, char *argv[]) {
     data = init_start(argv);
     if (mx_all_errors(data))
         return 0;
-//    system("leaks -q pathfinder");
+    system("leaks -q pathfinder");
     return 0;
 }

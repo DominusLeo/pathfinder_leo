@@ -3,7 +3,6 @@
 bool invalid_number_islands(t_file *data) {
     int number = mx_atoi(data->file_lines[0]);
     int count = 1;
-//    char **temp = malloc(sizeof(char *) * data->bridge_count * 2 + 1);
     char **temp = data->all_bridges_sort;
 
     mx_bubble_sort(temp, data->bridge_count * 2);
@@ -14,8 +13,5 @@ bool invalid_number_islands(t_file *data) {
         mx_printerr("error: invalid number of islands\n");
         return 1;
     }
-//    printf("num0 = |%d| count = |%d|\n", number, count);
-//    for (z = 0; temp[z]; z++)
-//        printf("bBBridge %d = |%s|\n", z, temp[z]);
     return 0;
 }

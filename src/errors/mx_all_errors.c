@@ -1,7 +1,6 @@
 #include "pathfinder.h"
 
 bool mx_all_errors(t_file *data) {
-//    printf("file:\n%s\n", data->file);
     if (invalid_1(data->file_lines[0]))
         return 1;
     if (invalid_n(data))

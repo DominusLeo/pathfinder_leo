@@ -2,6 +2,7 @@
 
 bool invalid_sum(int *arr, int count) {
     unsigned long sum = 0;
+
     for (int i = 0; i < count;i++)
         sum += arr[i];
     if (sum > INT_MAX) {
