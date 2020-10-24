@@ -27,4 +27,5 @@ bool empty(t_file *data);
 bool invalid_1(char *str);
 bool invalid_n(t_file *data);//INT_MAX gluks
 bool invalid_number_islands(t_file *data);
+bool duplicates(char **bridges, int count);
 bool invalid_sum(int *arr, int count);
