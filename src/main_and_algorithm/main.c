@@ -12,9 +12,9 @@ t_matrix *init_matrix(t_file *data) {
                 mat->matrix[i][j] = 0;
             else
                 mat->matrix[i][j] = INT_MAX;
-            printf("%-11d", mat->matrix[i][j]);
+            //printf("%-11d", mat->matrix[i][j]);
         }
-        printf("\n");
+        //printf("\n");
     }
     return mat;
 }
