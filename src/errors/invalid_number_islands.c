@@ -5,7 +5,7 @@ bool invalid_number_islands(t_file *data) {
     int count = 1;
     char **temp = data->all_bridges_sort;
 
-    mx_bubble_sort(temp, data->bridge_count * 2);
+    mx_bubble_sort(temp, data->pairs_count * 2);
     for (int i = 1; temp[i]; i++)
         if (mx_strcmp(temp[i], temp[i - 1]) != 0)
             count++;

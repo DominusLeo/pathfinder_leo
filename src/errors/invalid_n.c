@@ -34,7 +34,7 @@ static int smth(t_file *data, int i) {
 
 bool invalid_n(t_file *data) {
     for (int i = 1; i < mx_count_words(data->file, '\n'); i++)
-        if (smth(data, i) || data->isl_lengts[i + 1] < 0) {
+        if (smth(data, i) || data->isl_lengts[i - 1] < 0) {
             print_error_line(i);
             return 1;
         }

@@ -3,8 +3,8 @@
 #include "libmx.h"
 
 typedef struct s_file {
-    int fd;//need it?
-    int bridge_count;
+    int pairs_count;
+    int count_islands;
     int *isl_lengts;
     char *lengt;
     char *name;
@@ -16,6 +16,12 @@ typedef struct s_file {
     char **all_bridges_sort;
 }              t_file;
 
+typedef struct s_matrix {
+    int count_islands;
+    int **matrix;
+
+}              t_matrix;
+
 /*typedef struct bridges {
 }bridges;*/
 
@@ -26,6 +32,7 @@ bool not_exist(char *argv[]);
 bool empty(t_file *data);
 bool invalid_1(char *str);
 bool invalid_n(t_file *data);//INT_MAX gluks
+void print_error_line(int i);
 bool invalid_number_islands(t_file *data);
 bool duplicates(char **bridges, int count);
 bool invalid_sum(int *arr, int count);

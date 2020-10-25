@@ -7,9 +7,9 @@ bool mx_all_errors(t_file *data) {
         return 1;
     if (invalid_number_islands(data))
         return 1;
-    if (duplicates(data->all_bridges, data->bridge_count))
+    if (duplicates(data->all_bridges, data->pairs_count))
         return 1;
-    if(invalid_sum(data->isl_lengts, data->bridge_count))
+    if(invalid_sum(data->isl_lengts, data->pairs_count))
         return 1;
     mx_print_unicode_str("\n4053 4053 4053 4053 4053 4053 4053 4053 4053\n"
                              "78008 hello world 78008\n"
