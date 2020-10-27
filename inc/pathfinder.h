@@ -19,6 +19,7 @@ typedef struct s_file {
 typedef struct s_matrix {
     int count_islands;
     int **matrix;
+    char **unique_isl;
 
 }              t_matrix;
 
