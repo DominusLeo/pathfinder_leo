@@ -1,17 +1,86 @@
 #include "pathfinder.h"
 
-t_matrix *init_matrix(t_file *data) {
-    t_matrix *mat = (t_matrix *)malloc(sizeof(t_file));
-    mat->matrix = (int **)malloc(sizeof(int *) * data->count_islands);
-    mat->count_islands = data->count_islands;
+static char *temp_strcat (char *isl1, char *isl2) {
+    char *temp = mx_strdup(isl1);
 
-    for (int i = 0; i < data->count_islands; i++) {
-        mat->matrix[i] = (int *)malloc(sizeof(int) * data->count_islands);
-        for (int j = 0; j < data->pairs_count * 2 + 2; j++)
-            (i == j) ? (mat->matrix[i][j] = 0) : (mat->matrix[i][j] = INT_MAX);
+    temp = mx_strcat(temp, "-");
+    temp = mx_strcat(temp, isl2);
+    return temp;
+}
+static int len_of_two(char *isl1, char *isl2) {
+    return mx_strlen(isl1) + mx_strlen(isl2) + 1;
+}
+//
+static void mx_shift(char **arr, int size) {
+    char *temp = arr[0];
+    int i;
+
+    for (i = 0; i < size - 1; i++)
+        arr[i] = arr[i + 1];
+    arr[i] = temp;
+}
+void mx_arr_rotate(char **arr, int size, int shift) {//HOW
+    int i;
+
+    if (shift < 0) {
+        shift = -shift % size;
+        for (i = 0; i < shift; i++)
+            mx_shift(arr, size);
     }
-    mat->unique_isl = mx_unique_elements(data->all_bridges, mat->count_islands);
+    else if (shift >= 0) {
+        shift = shift % size;
+        shift = size - shift;
+        for (i = 0; i < shift; i++)
+            mx_shift(arr, size);
+    }
+}
+//
+
+t_matrix *fill_matrix (t_file *data, t_matrix *mat) {
+    char *temp = NULL;
+    int z = 0;
+
+    mx_arr_rotate(data->file_lines, data->pairs_count + 1, -1);
+    for (int i = 0; i < mat->count_islands; i++) {
+        for (int j = 0; j < mat->count_islands; j++) {
+            temp = temp_strcat(mat->unique_isl[i], mat->unique_isl[j]);
+            printf("temp = |%-24s| - line = |%-24s|", temp, data->file_lines[z]);
+            if (mx_strncmp(temp, data->file_lines[z],
+                len_of_two(mat->unique_isl[i], mat->unique_isl[j])) == 0) {
+                mat->matrix[i][j] = data->isl_lengts[z];
+                mat->matrix[j][i] = data->isl_lengts[z];
+                z++;
+                printf(" Yes, z = %d", z);
+            }
+            free(temp);
+            printf("\n");
+
+        }
+    }
+//    char *temp = temp_strcat(mat->unique_isl[3], mat->unique_isl[4]);
+//    int n = len_of_two(mat->unique_isl[3], mat->unique_isl[4]);
+//    printf("%s %d\n\n", temp, n);
+//    free(temp);
     return mat;
+}
+
+static void output (t_file *data, t_matrix *mat) {
+    for(int i = 0; i <= data->pairs_count; i++) {
+        printf("line[%d] |%s|\n", i, data->file_lines[i]);
+    }
+    printf("\n\t     ");
+    for(int i = 0; i < mat->count_islands; i++)
+        printf("%-12s ", mat->unique_isl[i]);
+    printf("\n");
+    for(int i = 0; i < data->count_islands; i++) {
+        for (int j = 0; j < data->count_islands; j++) {
+            if (j == 0)
+                printf("%-12s ", mat->unique_isl[i]);
+            printf("%-12d", mat->matrix[i][j]);
+        }
+        printf("\n");
+    }
+    system("leaks -q pathfinder");
 }
 
 int main (int argc, char *argv[]) {
@@ -26,23 +95,8 @@ int main (int argc, char *argv[]) {
     if (mx_all_errors(data))
         return 0;
     mat = init_matrix(data);
-    for(int i = 0; i < data->count_islands; i++) {
-        printf("island [%d] |%s|\n", i+1, mat->unique_isl[i]);
-    }
+    mat = fill_matrix(data, mat);
 
-    printf("\n\t     ");
-    for(int i = 0; i < mat->count_islands; i++)
-        printf("%-12s ", mat->unique_isl[i]);
-    printf("\n");
-    for(int i = 0; i < data->count_islands; i++) {
-        for (int j = 0; j < data->count_islands; j++) {
-            if (j == 0)
-                printf("%-12s ", mat->unique_isl[i]);
-            printf("%-12d", mat->matrix[i][j]);
-        }
-        printf("\n");
-    }
-//    data->pairs_count > data->count_islands ? printf("da %d", data->pairs_count) : printf("net %d", data->count_islands);
-//    system("leaks -q pathfinder");
+    output(data, mat);
     return 0;
 }

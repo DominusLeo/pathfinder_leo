@@ -24,13 +24,14 @@ typedef struct s_matrix {
 }              t_matrix;
 
 t_file *init_start(char *argv[]);
+t_matrix *init_matrix(t_file *data);
 bool mx_all_errors(t_file *data);
 bool invalid_argc(int argc);
 bool not_exist(char *argv[]);
 bool empty(t_file *data);
 bool invalid_1(char *str);
 bool invalid_n(t_file *data);//INT_MAX gluks
-void print_error_line(int i);
 bool invalid_number_islands(t_file *data);
 bool duplicates(char **bridges, int count);
 bool invalid_sum(int *arr, int count);
+void print_error_line(int i);
