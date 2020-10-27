@@ -23,9 +23,6 @@ typedef struct s_matrix {
 
 }              t_matrix;
 
-/*typedef struct bridges {
-}bridges;*/
-
 t_file *init_start(char *argv[]);
 bool mx_all_errors(t_file *data);
 bool invalid_argc(int argc);

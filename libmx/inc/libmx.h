@@ -95,5 +95,6 @@ void mx_printerr(const char *s);
 void mx_sort_arr_char(char *arr[], int size);//my own
 int mx_quicksort_int(int *arr, int left, int right);//my own
 void mx_print_unicode_str(char *str);//my own
+char **mx_unique_elements(char **src, int count);//my own
 
 #endif
