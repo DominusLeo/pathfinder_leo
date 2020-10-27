@@ -20,7 +20,7 @@ Oracle
 pathfinder
 /check.sh
 /easy
-/empty
+/example3
 /example1
 /example2
 /hard
@@ -32,3 +32,4 @@ pathfinder
 /invalid5
 /invalid6
 /medium
+/empty

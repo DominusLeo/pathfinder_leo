@@ -92,6 +92,8 @@ bool mx_isalpha(int c);
 int my_sort_arr_int(int *arr, int size);
 int mx_atoi(const char *str);
 void mx_printerr(const char *s);
+void mx_arr_rotate(int *arr, int size, int shift);
+void mx_str_rotate(char **arr, int size, int shift);
 void mx_sort_arr_char(char *arr[], int size);//my own
 int mx_quicksort_int(int *arr, int left, int right);//my own
 void mx_print_unicode_str(char *str);//my own

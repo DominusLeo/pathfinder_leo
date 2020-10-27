@@ -10,7 +10,7 @@ int mx_atoi(const char *str) {
         if (str[i] == '-')
                ch = -1;
         i++;
-        }
+    }
     for( ; mx_isdigit(str[i]); i++) {
         if (ch == -1 && ((n > -(LONG_MIN / 10)) || ((n == -(LONG_MIN / 10))
             && (str[i] - 48 > -(LONG_MIN % 10)))))

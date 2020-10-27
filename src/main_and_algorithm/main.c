@@ -10,57 +10,34 @@ static char *temp_strcat (char *isl1, char *isl2) {
 static int len_of_two(char *isl1, char *isl2) {
     return mx_strlen(isl1) + mx_strlen(isl2) + 1;
 }
-//
-static void mx_shift(char **arr, int size) {
-    char *temp = arr[0];
-    int i;
-
-    for (i = 0; i < size - 1; i++)
-        arr[i] = arr[i + 1];
-    arr[i] = temp;
-}
-void mx_arr_rotate(char **arr, int size, int shift) {//HOW
-    int i;
-
-    if (shift < 0) {
-        shift = -shift % size;
-        for (i = 0; i < shift; i++)
-            mx_shift(arr, size);
-    }
-    else if (shift >= 0) {
-        shift = shift % size;
-        shift = size - shift;
-        for (i = 0; i < shift; i++)
-            mx_shift(arr, size);
-    }
-}
-//
 
 t_matrix *fill_matrix (t_file *data, t_matrix *mat) {
-    char *temp = NULL;
+    char *temp1 = NULL;
+    char *temp2 = NULL;
     int z = 0;
 
-    mx_arr_rotate(data->file_lines, data->pairs_count + 1, -1);
-    for (int i = 0; i < mat->count_islands; i++) {
-        for (int j = 0; j < mat->count_islands; j++) {
-            temp = temp_strcat(mat->unique_isl[i], mat->unique_isl[j]);
-            printf("temp = |%-24s| - line = |%-24s|", temp, data->file_lines[z]);
-            if (mx_strncmp(temp, data->file_lines[z],
-                len_of_two(mat->unique_isl[i], mat->unique_isl[j])) == 0) {
-                mat->matrix[i][j] = data->isl_lengts[z];
-                mat->matrix[j][i] = data->isl_lengts[z];
-                z++;
-                printf(" Yes, z = %d", z);
+    mx_str_rotate(data->file_lines, data->pairs_count + 1, -1);
+    for (int i = 0; i < mat->count_islands; i++, z++)
+        for (int j = 0; j < mat->count_islands; j++, z++)
+            for (z = 0; z < data->pairs_count; z++) {
+                temp1 = temp_strcat(mat->unique_isl[i], mat->unique_isl[j]);
+                temp2 = temp_strcat(mat->unique_isl[j], mat->unique_isl[i]);
+//                printf("temp1 = |%-24s| line = |%-24s| lengt = |%-4d|", temp1,
+//                       data->file_lines[z], data->isl_lengts[z]);
+                if (mx_strncmp(temp1, data->file_lines[z],
+                    len_of_two(mat->unique_isl[i], mat->unique_isl[j])) == 0 ||
+                    strncmp(temp2, data->file_lines[z],
+                    len_of_two(mat->unique_isl[j], mat->unique_isl[i])) == 0) {
+                    mat->matrix[i][j] = data->isl_lengts[z];
+                    mat->matrix[j][i] = data->isl_lengts[z];
+//                    printf(" Yes, z = %d", z);
+//                    printf(" len of two = %d", len_of_two(mat->unique_isl[i],
+//                                                          mat->unique_isl[j]));
+                }
+                free(temp1);
+                free(temp2);
+//                printf("\n");
             }
-            free(temp);
-            printf("\n");
-
-        }
-    }
-//    char *temp = temp_strcat(mat->unique_isl[3], mat->unique_isl[4]);
-//    int n = len_of_two(mat->unique_isl[3], mat->unique_isl[4]);
-//    printf("%s %d\n\n", temp, n);
-//    free(temp);
     return mat;
 }
 

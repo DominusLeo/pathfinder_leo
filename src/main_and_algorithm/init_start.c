@@ -26,8 +26,8 @@ static void init_arr_lengts(t_file *data) {
     for (; mx_isdigit(*data->lengt); )
         data->lengt++;
     data->lengts = mx_strsplit(data->lengt, ' ');
-    data->isl_lengts = (int *)malloc(data->pairs_count);
-    for (int i = 0; data->lengts[i]; i++) {
+    data->isl_lengts = (int *)malloc(sizeof(int *) * data->pairs_count);
+    for (int i = 0; i < data->pairs_count; i++) {
         data->isl_lengts[i] = mx_atoi(data->lengts[i]);
 //        printf("lengts[%d] = %d\n", i, data->isl_lengts[i]);
     }
