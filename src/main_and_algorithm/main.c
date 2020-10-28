@@ -1,9 +1,8 @@
 #include "pathfinder.h"
 
-static void output (t_file *data, t_matrix *mat) {
-    for(int i = 0; i <= data->pairs_count; i++) {
+static void start_output (t_file *data, t_matrix *mat) {
+    for(int i = 0; i <= data->pairs_count; i++)
         printf("line[%d] |%s|\n", i, data->file_lines[i]);
-    }
     printf("\n\t     ");
     for(int i = 0; i < mat->count_islands; i++)
         printf("%-12s ", mat->unique_isl[i]);
@@ -16,7 +15,40 @@ static void output (t_file *data, t_matrix *mat) {
         }
         printf("\n");
     }
-    system("leaks -q pathfinder");
+}
+
+static void mid_output (t_file *data, t_matrix *mat) {
+    printf("\n\t     ");
+    for(int i = 0; i < mat->count_islands; i++)
+        printf("%-12s ", mat->unique_isl[i]);
+    printf("\n");
+    for(int i = 0; i < data->count_islands; i++) {
+        for (int j = 0; j < data->count_islands; j++) {
+            if (j == 0)
+                printf("%-12s ", mat->unique_isl[i]);
+            printf("%-12.lf", mat->final_matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+double mx_min (double a, double b) {
+    return (a < b) ? a : b;
+}
+
+double **floyd_algo(t_matrix *mat) {
+    mat->final_matrix = (double **)malloc(sizeof(double *) * mat->count_islands);
+    for (int i = 0; i < mat->count_islands; i++) {
+        mat->final_matrix[i] = (double *)malloc(sizeof(double ) * mat->count_islands);
+        for (int j = 0; j < mat->count_islands; j++)
+            mat->final_matrix[i][j] = mat->matrix[i][j];
+    }
+    for (int i = 0; i < mat->count_islands; i++)
+        for (int j = 0; j < mat->count_islands; j++)
+            for (int k = 0; k < mat->count_islands; k++)
+                mat->final_matrix[i][j] = mx_min(mat->final_matrix[i][j],
+                    mat->final_matrix[i][k] + mat->final_matrix[k][j]);
+    return mat->final_matrix;
 }
 
 int main (int argc, char *argv[]) {
@@ -32,7 +64,10 @@ int main (int argc, char *argv[]) {
         return 0;
     mat = init_matrix(data);
     mat = fill_matrix(data, mat);
+    mat->final_matrix = floyd_algo(mat);
+    start_output(data, mat);
+    mid_output(data, mat);
 
-    output(data, mat);
+    system("leaks -q pathfinder");
     return 0;
 }
