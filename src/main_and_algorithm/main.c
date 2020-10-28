@@ -25,7 +25,7 @@ static void mid_output (t_file *data, t_matrix *mat) {
         for (int j = 0; j < data->count_islands; j++) {
             if (j == 0)
                 printf("%-12s ", mat->unique_isl[i]);
-            printf("%-12.lf", mat->final_matrix[i][j]);
+            printf("%-12lu", mat->final_matrix[i][j]);
         }
         printf("\n");
     }
@@ -57,7 +57,7 @@ int main (int argc, char *argv[]) {
     data = init_start(argv);
     if (mx_all_errors(data))
         return 0;
-    mat = init_matrix(data);
+    mat = init_matrix(data);//1/2 leak
     mat = fill_matrix(data, mat);
     mat->final_matrix = floyd_algo(mat);
     start_output(data, mat);
