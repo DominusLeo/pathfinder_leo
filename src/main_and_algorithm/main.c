@@ -31,6 +31,21 @@ static void mid_output (t_file *data, t_matrix *mat) {
     }
 }
 
+void final_output(t_matrix *mat) {
+    for (int i = 0; i < mx_pow(mat->count_islands, 1); i++) {
+        mx_printstr("========================================\n");
+        mx_printstr("Path: ");
+
+//        mx_printstr(" -> ");
+
+        mx_printstr("\nRoute: ");
+
+        mx_printstr("\nDistance: ");
+
+        mx_printstr("\n========================================\n");
+    }
+}
+
 int main (int argc, char *argv[]) {
     t_file *data = NULL;
     t_matrix *mat = NULL;
@@ -47,6 +62,7 @@ int main (int argc, char *argv[]) {
     mat->final_matrix = floyd_algo(mat);
     start_output(data, mat);
     mid_output(data, mat);
+    final_output(mat);
 
     system("leaks -q pathfinder");
     return 0;

@@ -17,6 +17,6 @@ double **floyd_algo(t_matrix *mat) {
         for (int j = 0; j < mat->count_islands; j++)
             for (int k = 0; k < mat->count_islands; k++)
                 mat->final_matrix[i][j] = mx_min(mat->final_matrix[i][j],
-                                                 mat->final_matrix[i][k] + mat->final_matrix[k][j]);
+                mat->final_matrix[i][k] + mat->final_matrix[k][j]);
     return mat->final_matrix;
 }
