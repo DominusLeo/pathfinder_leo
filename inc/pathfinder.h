@@ -26,6 +26,7 @@ typedef struct s_matrix {
 t_file *init_start(char *argv[]);
 t_matrix *init_matrix(t_file *data);
 t_matrix *fill_matrix (t_file *data, t_matrix *mat);
+double **floyd_algo(t_matrix *mat);
 bool mx_all_errors(t_file *data);
 bool invalid_argc(int argc);
 bool not_exist(char *argv[]);
