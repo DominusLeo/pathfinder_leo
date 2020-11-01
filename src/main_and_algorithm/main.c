@@ -32,23 +32,34 @@ static void mid_output (t_file *data, t_matrix *mat) {
 }
 
 void final_output(t_matrix *mat) {
-    for (int i = 0; i < mx_pow(mat->count_islands, 1); i++) {
-        mx_printstr("========================================\n");
-        mx_printstr("Path: ");
+//    for (int i = 0; i < mx_pow(mat->count_islands, 1); i++) {
+//        for (int j = 0; j < mat->count_islands; j++) {
+//            if (i != j ) {
+//                mx_printstr("========================================\n");
+//                mx_printstr("Path: ");
+//                mx_printstr(mat->unique_isl[i]);
+//                mx_printstr(" -> ");
+//                mx_printstr(mat->unique_isl[j]);
+//
+//                mx_printstr("\nRoute: ");
+//                mx_printstr(mat->unique_isl[i]);
+//                mx_printstr(" -> ");
+//                mx_printstr(mat->unique_isl[j]);
+//
+//                mx_printstr("\nDistance: ");
+//                mx_printint((int) mat->final_matrix[i][j]);
+//
+//                mx_printstr("\n========================================\n");
+//            }
+//        }
+//    }
 
-//        mx_printstr(" -> ");
-
-        mx_printstr("\nRoute: ");
-
-        mx_printstr("\nDistance: ");
-
-        mx_printstr("\n========================================\n");
-    }
 }
 
 int main (int argc, char *argv[]) {
     t_file *data = NULL;
     t_matrix *mat = NULL;
+    t_list_mat *out = NULL;
 
     if (invalid_argc(argc))
         return 0;
@@ -59,10 +70,10 @@ int main (int argc, char *argv[]) {
         return 0;
     mat = init_matrix(data);//1/2 leak
     mat = fill_matrix(data, mat);
-    mat->final_matrix = floyd_algo(mat);
+    mat->final_matrix = floyd_algo(mat, out);
     start_output(data, mat);
     mid_output(data, mat);
-    final_output(mat);
+//    final_output(mat);
 
     system("leaks -q pathfinder");
     return 0;

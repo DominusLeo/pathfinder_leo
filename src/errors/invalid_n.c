@@ -36,12 +36,16 @@ bool invalid_n(t_file *data) {
     char *temp = NULL;
 
     for (int i = 1; i < mx_count_words(data->file, '\n'); i++) {
-        temp = mx_itoa(data->isl_lengts[i - 1]);
-        if (smth(data, i) || mx_strcmp(temp, data->lengts[i - 1]) != 0) {
+//        temp = mx_strcpy(temp, mx_itoa(data->isl_lengts[i]));
+//        temp = (char *)malloc(sizeof(char *));
+//        temp = mx_itoa(data->isl_lengts[i - 1]);
+        if (smth(data, i)/* || mx_strcmp(temp, data->lengts[i - 1]) != 0*/) {
             print_error_line(i);
             return 1;
         }
-        free(temp);
     }
+//            free(temp);
+//    for (int i = 1; i < mx_count_words(data->file, '\n'); i++)
+//        printf("temp[] = %d\n", data->isl_lengts[i-1]);
     return 0;
 }

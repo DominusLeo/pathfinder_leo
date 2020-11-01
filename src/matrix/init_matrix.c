@@ -7,7 +7,6 @@ t_matrix *init_matrix(t_file *data) {
 
     for (int i = 0; i < data->count_islands; i++) {
         mat->matrix[i] = (int *)malloc(sizeof(int) * data->count_islands);
-//    system("leaks -q pathfinder");
         for (int j = 0; j < data->pairs_count * 2 + 2; j++)
             (i == j) ? (mat->matrix[i][j] = 0) : (mat->matrix[i][j] = INT_MAX);
     }

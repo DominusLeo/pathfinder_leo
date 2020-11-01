@@ -1,4 +1,4 @@
-#include <libmx.h>
+#include "libmx.h"
 
 int mx_atoi(const char *str) {
     unsigned long long int n = 0;
@@ -20,5 +20,5 @@ int mx_atoi(const char *str) {
             return -1;
         n = n * 10 + str[i] - 48;
     }
-    return ch * n;
+    return (int) ch * (int) n;
 }
