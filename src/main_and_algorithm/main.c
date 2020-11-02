@@ -75,6 +75,6 @@ int main (int argc, char *argv[]) {
     mid_output(data, mat);
 //    final_output(mat);
 
-    system("leaks -q pathfinder");
+//    system("leaks -q pathfinder");
     return 0;
 }

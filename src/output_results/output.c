@@ -22,14 +22,17 @@ static void out(t_matrix *mat, int i, int j) {
 
 void mx_out(t_matrix *mat) {
 
-    for (int ii = 0; ii < mat->count_islands; ii++) {
-       for (int jj = 0; jj < mat->count_islands; jj++) {
-           if (mat->final_matrix[ii][jj] == mat->matrix[ii][jj] && ii < jj) {
-               out(mat, ii, jj);
-           }
-           else if (mat->matrix[ii][jj] == INT_MAX) {
-
+    for (int i = 0; i < mat->count_islands; i++) {
+       for (int j = 0; j < mat->count_islands; j++) {
+           if (mat->final_matrix[i][j] == mat->matrix[i][j] && i < j)
+               out(mat, i, j);
+           else if (mat->final_matrix[i][j] < mat->matrix[i][j]) {
+//                while (mat->final_matrix[i][j] != mat->matrix[i][j]) {
+//                    mx_print_unicode_str(" 78008 fuck 78008 ");
+//                }
            }
        }
    }
 }
+
+//========================================
