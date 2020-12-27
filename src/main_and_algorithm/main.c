@@ -55,11 +55,15 @@ void final_output(t_matrix *mat) {
 //    }
 
 }
+static void convert() {
+
+}
 
 int main (int argc, char *argv[]) {
     t_file *data = NULL;
     t_matrix *mat = NULL;
     t_list_mat *out = NULL;
+    t_matrixxx *matrixxx = NULL;
 
     if (invalid_argc(argc))
         return 0;
@@ -71,10 +75,8 @@ int main (int argc, char *argv[]) {
     mat = init_matrix(data);//1/2 leak
     mat = fill_matrix(data, mat);
     mat->final_matrix = floyd_algo(mat, out);
-    start_output(data, mat);
-    mid_output(data, mat);
-//    final_output(mat);
-
+    matrixxx = malloc(sizeof(t_matrixxx) * 1);
+    mx_output_results(matrixxx, mat);
 //    system("leaks -q pathfinder");
     return 0;
 }

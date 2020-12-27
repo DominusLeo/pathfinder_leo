@@ -24,6 +24,16 @@ typedef struct s_matrix {
     char **unique_isl;
 }              t_matrix;
 
+//D
+typedef struct s_matrixxx {
+    int len;
+    int *route;
+    long **first;
+    long **table;
+}              t_matrixxx;
+//___D
+
+
 typedef struct s_list_mat {
     char **bridges;
     int *dist;
@@ -46,3 +56,6 @@ bool duplicates(char **bridges, int count);
 bool invalid_sum(int *arr, int count);
 void print_error_line(int i);
 void mx_out(t_matrix *mat);
+
+//
+void mx_output_results(t_matrixxx *matrixxx, t_matrix *matrix0);
