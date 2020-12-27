@@ -22,6 +22,8 @@ static void init_arr_lengts(t_file *data) {
     data->isl_lengts = (int *)malloc(sizeof(int *) * data->pairs_count);
     for (int i = 0; i < data->pairs_count; i++) {
         data->isl_lengts[i] = mx_atoi(data->lengts[i]);
+        if (mx_atoi(data->lengts[i]) != mx_atol(data->lengts[i]))
+            data->isl_lengts[i] = -1;
     }
 }
 
