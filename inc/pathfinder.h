@@ -18,18 +18,14 @@ typedef struct s_file {
 }              t_file;
 
 typedef struct s_matrix {
+    int len;
+    int *route;
+
     int count_islands;
     int **matrix;
     long **final_matrix;
     char **unique_isl;
 }              t_matrix;
-
-//
-typedef struct s_matrixxx {
-    int len;
-    int *route;
-}              t_matrixxx;
-//
 
 t_file *init_start(char *argv[]);
 t_matrix *init_matrix(t_file *data);
@@ -47,4 +43,4 @@ bool duplicates(char **bridges, int count);
 bool invalid_sum(int *arr, int count);
 void print_error_line(int i);
 //
-void mx_output_results(t_matrixxx *matrixxx, t_matrix *matrix0);
+void mx_output_results(t_matrix *matrix0);
